@@ -31,7 +31,6 @@ def main(page):
     page.add(ft.ElevatedButton(
         text="+", 
         on_click = sumar,
-        data="+", 
         )
     )
     page.update()
