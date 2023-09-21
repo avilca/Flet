@@ -38,7 +38,6 @@ def main(page):
     page.add(ft.ElevatedButton(
         text="-", 
         on_click = restar, 
-        data="-",
         )
     )
     page.update()
@@ -46,7 +45,6 @@ def main(page):
     page.add(ft.ElevatedButton(
         text="*", 
         on_click = multiplicar, 
-        data="*",
         )
     )
     page.update()
@@ -54,7 +52,6 @@ def main(page):
     page.add(ft.ElevatedButton(
         text="/", 
         on_click = dividir, 
-        data="*",
         )
     )
     page.update()
