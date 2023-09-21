@@ -8,7 +8,15 @@ def main(page):
 
     def restar(e):
         txtresultado.value = str(int(valor1.value) -  int(valor2.value))
-        page.update()    
+        page.update()  
+
+    def multiplicar(e):
+        txtresultado.value = str(int(valor1.value) *  int(valor2.value))
+        page.update()
+
+    def dividir(e):
+        txtresultado.value = str(int(valor1.value) /  int(valor2.value))
+        page.update()            
 
     page.add(ft.Text(value="Ingrese 1er valor", color="yellow", size=20))
     page.update()
@@ -32,6 +40,22 @@ def main(page):
         text="-", 
         on_click = restar, 
         data="-",
+        )
+    )
+    page.update()
+
+    page.add(ft.ElevatedButton(
+        text="*", 
+        on_click = multiplicar, 
+        data="*",
+        )
+    )
+    page.update()
+
+    page.add(ft.ElevatedButton(
+        text="/", 
+        on_click = dividir, 
+        data="*",
         )
     )
     page.update()
