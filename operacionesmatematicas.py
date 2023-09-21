@@ -2,6 +2,8 @@ import flet as ft
 
 def main(page):
 
+    page.title = "Operaciones Matematicas"
+
     def sumar(e):
         txtresultado.value = str(int(valor1.value) +  int(valor2.value))
         page.update()
@@ -17,6 +19,8 @@ def main(page):
     def dividir(e):
         txtresultado.value = str(int(valor1.value) /  int(valor2.value))
         page.update()            
+
+    page.add(ft.Text("Operaciones Matematicas", size=50, color="yellow"))
 
     page.add(ft.Text(value="Ingrese 1er valor", color="yellow", size=20))
     page.update()
