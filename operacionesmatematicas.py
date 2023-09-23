@@ -5,7 +5,15 @@ def main(page):
     page.title = "Operaciones Matematicas"
 
     def sumar(e):
-        txtresultado.value = str(int(valor1.value) +  int(valor2.value))
+          
+         
+        
+        if valor1.value == "" or valor2.value == "":
+            valor1.error_text = "por favor ingrese primer valor"
+            valor2.error_text = "por favor ingrese segundo valor"       
+        else:
+            txtresultado.value = str(int(valor1.value) +  int(valor2.value)) 
+
         page.update()
 
     def restar(e):
@@ -20,14 +28,14 @@ def main(page):
         txtresultado.value = str(int(valor1.value) /  int(valor2.value))
         page.update()            
 
-    page.add(ft.Text("Operaciones Matematicas", size=50, color="yellow"))
+    page.add(ft.Text("Operaciones Matematicas", size=50, color="green"))
 
-    page.add(ft.Text(value="Ingrese 1er valor", color="yellow", size=20))
+    page.add(ft.Text(value="Ingrese 1er valor", color="green", size=20))
     page.update()
     valor1 = ft.TextField(hint_text="", width=200)
     page.add(valor1)
 
-    page.add(ft.Text(value="Ingrese 2do valor", color="yellow", size=20))
+    page.add(ft.Text(value="Ingrese 2do valor", color="green", size=20))
     page.update()
     valor2 =ft.TextField(hint_text="", width=200)
     page.add(valor2)
