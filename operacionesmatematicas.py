@@ -4,28 +4,50 @@ def main(page):
 
     page.title = "Operaciones Matematicas"
 
+
     def sumar(e):
-          
-         
-        
+                
         if valor1.value == "" or valor2.value == "":
             valor1.error_text = "por favor ingrese primer valor"
             valor2.error_text = "por favor ingrese segundo valor"       
         else:
+            valor1.error_text= ''
+            valor2.error_text= ''
             txtresultado.value = str(int(valor1.value) +  int(valor2.value)) 
 
         page.update()
 
     def restar(e):
-        txtresultado.value = str(int(valor1.value) -  int(valor2.value))
+        if valor1.value == "" or valor2.value == "":
+            valor1.error_text = "por favor ingrese primer valor"
+            valor2.error_text = "por favor ingrese segundo valor"       
+        else:
+            valor1.error_text= ''
+            valor2.error_text= ''
+            txtresultado.value = str(int(valor1.value) -  int(valor2.value))
+
         page.update()  
 
     def multiplicar(e):
-        txtresultado.value = str(int(valor1.value) *  int(valor2.value))
+        if valor1.value == "" or valor2.value == "":
+            valor1.error_text = "por favor ingrese primer valor"
+            valor2.error_text = "por favor ingrese segundo valor"       
+        else:
+            valor1.error_text= ''
+            valor2.error_text= ''
+            txtresultado.value = str(int(valor1.value) *  int(valor2.value))
+
         page.update()
 
     def dividir(e):
-        txtresultado.value = str(int(valor1.value) /  int(valor2.value))
+        if valor1.value == "" or valor2.value == "":
+            valor1.error_text = "por favor ingrese primer valor"
+            valor2.error_text = "por favor ingrese segundo valor"       
+        else:
+            valor1.error_text= ''
+            valor2.error_text= ''
+            txtresultado.value = str(int(valor1.value) /  int(valor2.value))
+
         page.update()            
 
     page.add(ft.Text("Operaciones Matematicas", size=50, color="green"))
@@ -40,14 +62,22 @@ def main(page):
     valor2 =ft.TextField(hint_text="", width=200)
     page.add(valor2)
     
-    page.add(ft.ElevatedButton(
-        text="+", 
-        on_click = sumar,
-        )
-    )
+
+
+    page.add(
+             ft.Row(controls=[valor1, valor2]),
+             ft.Row(
+                    controls=[
+                        ft.ElevatedButton(text="+", on_click = sumar),
+                        ft.ElevatedButton(text="-", on_click = restar),
+                        ft.ElevatedButton(text="*", on_click = multiplicar),
+                        ft.ElevatedButton(text="/", on_click = dividir),
+                      ]    
+                    )
+             )      
     page.update()
 
-    page.add(ft.ElevatedButton(
+    '''page.add(ft.ElevatedButton(
         text="-", 
         on_click = restar, 
         )
@@ -67,7 +97,8 @@ def main(page):
         )
     )
     page.update()
-    
+    '''
+
 
     txtresultado = ft.TextField(hint_text="", width=200)
     page.add(txtresultado)
