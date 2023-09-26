@@ -77,28 +77,6 @@ def main(page):
              )      
     page.update()
 
-    '''page.add(ft.ElevatedButton(
-        text="-", 
-        on_click = restar, 
-        )
-    )
-    page.update()
-
-    page.add(ft.ElevatedButton(
-        text="*", 
-        on_click = multiplicar, 
-        )
-    )
-    page.update()
-
-    page.add(ft.ElevatedButton(
-        text="/", 
-        on_click = dividir, 
-        )
-    )
-    page.update()
-    '''
-
 
     txtresultado = ft.TextField(hint_text="", width=200)
     page.add(txtresultado)
