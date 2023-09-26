@@ -7,9 +7,9 @@ def main(page):
 
     def sumar(e):
                 
-        if valor1.value == "" or valor2.value == "":
+        if valor1.value == '' or valor2.value == '':
             valor1.error_text = "por favor ingrese primer valor"
-            valor2.error_text = "por favor ingrese segundo valor"       
+            valor2.error_text = "por favor ingrese segundo valor"
         else:
             valor1.error_text= ''
             valor2.error_text= ''
@@ -63,7 +63,6 @@ def main(page):
     page.add(valor2)
     
 
-
     page.add(
              ft.Row(controls=[valor1, valor2]),
              ft.Row(
@@ -77,6 +76,8 @@ def main(page):
              )      
     page.update()
 
+    
+    
 
     txtresultado = ft.TextField(hint_text="", width=200)
     page.add(txtresultado)
