@@ -4,19 +4,9 @@ from flet import *
 
 def main(page: ft.Page):
 
-    
-    def button_clicked(e):
-        t.value = f"Los datos:  '{codpro.value}', '{nompro.value}', '{ddcate.value}', '{ddpeso.value}'"
-        page.update()
 
-
-        
-
-    t = ft.Text()
-
-
-    codpro = ft.TextField(label="CÓDIGO PRODUCTO")
-    nompro = ft.TextField(label="NOMBRE PRODUCTO")
+    codpro = TextField(label="CÓDIGO PRODUCTO")
+    nompro = TextField(label="NOMBRE PRODUCTO")
 
     #combo de categoria
     ddcate = ft.Dropdown(label="CATEGORIA",
@@ -36,27 +26,52 @@ def main(page: ft.Page):
         ],
     )
 
+
+    tablaproducto = DataTable(
+                  #CABECERA DE LAS CALUMNAS  
+                  columns=[
+                      DataColumn(Text("CÓDIGO")),
+                      DataColumn(Text("PRODUCTO")),
+                      DataColumn(Text("CATEGORÍA")),
+                      DataColumn(Text("PESO")),
+                  ],
+                  #FILAS  
+                  rows=[]          
+    )
+
+    #FUNCION para AGREGAR     
+    def agregar(e):
+        tablaproducto.rows.append(
+            DataRow(
+                cells=[
+                    DataCell(Text(codpro.value)),
+                    DataCell(Text(nompro.value)),
+                    DataCell(Text(ddcate.value)),
+                    DataCell(Text(ddpeso.value)),
+                ]
+            )
+        )
+        page.update()
+
     #Boton AGREGAR
-    BtnAgregar = ft.ElevatedButton(
+    BtnAgregar = ElevatedButton(
         text="Agregar", 
         bgcolor="blue",
         color="white",
-        on_click=button_clicked
+        on_click=agregar
         )
 
-        
-    page.add(codpro, nompro, ddcate, ddpeso, t, BtnAgregar)
 
-    page.add( 
-            ft.DataTable(columns=[
-                            ft.DataColumn(ft.Text("Código", weight="bold")),
-                            ft.DataColumn(ft.Text("Producto", weight="bold")),
-                            ft.DataColumn(ft.Text("Categoria",weight="bold")),
-                            ft.DataColumn(ft.Text("Peso", weight="bold")),
-                        ],
-                    )    
-
-    )
+    page.add(
+		Column([
+			Text("PRODUCTOS",size=30,weight="bold"),
+			codpro, nompro,ddcate, ddpeso,
+			Row([BtnAgregar]),
+			tablaproducto
+ 
+			])
+ 
+		)
 
 
 ft.app(target=main)
