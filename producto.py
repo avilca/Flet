@@ -1,21 +1,24 @@
 import flet as ft
+from flet import *
 
 
 def main(page: ft.Page):
 
+    
     def button_clicked(e):
-        t.value = f"Los datos:  '{tbcod.value}', '{tbnom.value}', '{ddcate.value}', '{ddpeso.value}'"
+        t.value = f"Los datos:  '{codpro.value}', '{nompro.value}', '{ddcate.value}', '{ddpeso.value}'"
         page.update()
 
 
+        
 
     t = ft.Text()
 
-    tbcod = ft.TextField(label="CÓDIGO PRODUCTO")
-    tbnom = ft.TextField(label="NOMBRE PRODUCTO")
 
-    b = ft.ElevatedButton(text="Submit", on_click=button_clicked)
+    codpro = ft.TextField(label="CÓDIGO PRODUCTO")
+    nompro = ft.TextField(label="NOMBRE PRODUCTO")
 
+    #combo de categoria
     ddcate = ft.Dropdown(label="CATEGORIA",
         width=150,
         options=[
@@ -24,6 +27,7 @@ def main(page: ft.Page):
         ],
     )
 
+    #combo de peso
     ddpeso = ft.Dropdown(label="PESO",
         width=100,
         options=[
@@ -32,11 +36,27 @@ def main(page: ft.Page):
         ],
     )
 
-    
-    
-    page.add(tbcod, tbnom, ddcate, ddpeso, t, b)
+    #Boton AGREGAR
+    BtnAgregar = ft.ElevatedButton(
+        text="Agregar", 
+        bgcolor="blue",
+        color="white",
+        on_click=button_clicked
+        )
+
+        
+    page.add(codpro, nompro, ddcate, ddpeso, t, BtnAgregar)
+
+    page.add( 
+            ft.DataTable(columns=[
+                            ft.DataColumn(ft.Text("Código", weight="bold")),
+                            ft.DataColumn(ft.Text("Producto", weight="bold")),
+                            ft.DataColumn(ft.Text("Categoria",weight="bold")),
+                            ft.DataColumn(ft.Text("Peso", weight="bold")),
+                        ],
+                    )    
+
+    )
 
 
-
-
-ft.app(target=main, view=ft.AppView.WEB_BROWSER)
+ft.app(target=main)
