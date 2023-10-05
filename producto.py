@@ -34,10 +34,14 @@ def main(page: ft.Page):
                       DataColumn(Text("PRODUCTO")),
                       DataColumn(Text("CATEGORÍA")),
                       DataColumn(Text("PESO")),
+                      DataColumn(Text("ACCIONES")),
                   ],
                   #FILAS  
                   rows=[]          
     )
+
+    
+
 
     #FUNCION para AGREGAR     
     def agregar(e):
@@ -48,10 +52,35 @@ def main(page: ft.Page):
                     DataCell(Text(nompro.value)),
                     DataCell(Text(ddcate.value)),
                     DataCell(Text(ddpeso.value)),
+                    DataCell(
+                        Row([
+                        IconButton("delete", 
+                                   icon_color ="red",
+                                   on_click = BtnEliminar),
+                        ])
+                        ),
                 ]
             )
         )
+        #MENSAJE correcto en Barra inferior
+        page.snack_bar = SnackBar(
+            Text("DATO INGRESADO", size = 30),
+            bgcolor = "green"
+        )
+        page.snack_bar.open = True
+        #FIN DEL MENSAJE
+
+        
         page.update()
+
+
+    def eliminar(e):
+        del tablaproducto.rows[codpro.value]
+
+        page.snack_bar.open = True
+        page.update()
+
+        
 
     #Boton AGREGAR
     BtnAgregar = ElevatedButton(
@@ -60,6 +89,15 @@ def main(page: ft.Page):
         color="white",
         on_click=agregar
         )
+    
+    BtnEliminar = ElevatedButton(
+        text="Eliminar", 
+        bgcolor="blue",
+        color="white",
+        on_click=eliminar
+        )
+
+
 
 
     page.add(
