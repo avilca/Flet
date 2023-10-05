@@ -42,7 +42,6 @@ def main(page: ft.Page):
 
     
 
-
     #FUNCION para AGREGAR     
     def agregar(e):
         tablaproducto.rows.append(
@@ -62,7 +61,7 @@ def main(page: ft.Page):
                 ]
             )
         )
-        #MENSAJE correcto en Barra inferior
+        #MENSAJE con Barra inferior
         page.snack_bar = SnackBar(
             Text("DATO INGRESADO", size = 30),
             bgcolor = "green"
@@ -70,7 +69,7 @@ def main(page: ft.Page):
         page.snack_bar.open = True
         #FIN DEL MENSAJE
 
-        
+
         page.update()
 
 
