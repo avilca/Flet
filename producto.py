@@ -63,7 +63,7 @@ def main(page: ft.Page):
         )
         #MENSAJE con Barra inferior
         page.snack_bar = SnackBar(
-            Text("DATO INGRESADO", size = 30),
+            Text("DATO INGRESADO", size = 40),
             bgcolor = "green"
         )
         page.snack_bar.open = True
