@@ -4,7 +4,6 @@ from flet import *
 
 def main(page: ft.Page):
 
-
     codpro = TextField(label="CÓDIGO PRODUCTO")
     nompro = TextField(label="NOMBRE PRODUCTO")
 
@@ -40,6 +39,20 @@ def main(page: ft.Page):
                   rows=[]          
     )
 
+    #FUNCION ELIMINAR
+    def eliminar(e):
+        tablaproducto.rows.remove(DataRow)
+
+        #MENSAJE con Barra inferior
+        page.snack_bar = SnackBar(
+            Text("SE ELIMINO DATO", size = 30),
+            bgcolor = "red"            
+        )
+        page.snack_bar.open = True
+        #FIN DEL MENSAJE inferior
+ 
+        page.update()
+
     
 
     #FUNCION para AGREGAR     
@@ -55,7 +68,7 @@ def main(page: ft.Page):
                         Row([
                         IconButton("delete", 
                                    icon_color ="red",
-                                   on_click = BtnEliminar),
+                                   on_click = eliminar),
                         ])
                         ),
                 ]
@@ -69,18 +82,15 @@ def main(page: ft.Page):
         page.snack_bar.open = True
         #FIN DEL MENSAJE
 
+        #Limpiar los controles
+        codpro.value = ""
+        nompro.value = ""
+        ddcate.value = ""
+        ddpeso.value = ""
 
         page.update()
 
-
-    def eliminar(e):
-        del tablaproducto.rows[codpro.value]
-
-        page.snack_bar.open = True
-        page.update()
-
-        
-
+       
     #Boton AGREGAR
     BtnAgregar = ElevatedButton(
         text="Agregar", 
@@ -89,15 +99,6 @@ def main(page: ft.Page):
         on_click=agregar
         )
     
-    BtnEliminar = ElevatedButton(
-        text="Eliminar", 
-        bgcolor="blue",
-        color="white",
-        on_click=eliminar
-        )
-
-
-
 
     page.add(
 		Column([
