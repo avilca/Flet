@@ -41,7 +41,7 @@ def main(page: ft.Page):
 
     #FUNCION ELIMINAR
     def eliminar(e):
-        tablaproducto.rows.remove(DataRow)
+        tablaproducto.rows.remove(tablaproducto.rows[0])
 
         #MENSAJE con Barra inferior
         page.snack_bar = SnackBar(
@@ -57,6 +57,7 @@ def main(page: ft.Page):
 
     #FUNCION para AGREGAR     
     def agregar(e):
+        
         tablaproducto.rows.append(
             DataRow(
                 cells=[
@@ -68,7 +69,8 @@ def main(page: ft.Page):
                         Row([
                         IconButton("delete", 
                                    icon_color ="red",
-                                   on_click = eliminar),
+                                   on_click = eliminar,
+                            )
                         ])
                         ),
                 ]
