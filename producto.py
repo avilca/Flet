@@ -53,6 +53,10 @@ def main(page: ft.Page):
  
         page.update()
 
+    def editar(e):
+        codpro.read_only = False
+        nompro.focus()
+
     
 
     #FUNCION para AGREGAR     
@@ -70,8 +74,12 @@ def main(page: ft.Page):
                         IconButton("delete", 
                                    icon_color ="red",
                                    on_click = eliminar,
-                            )
-                        ])
+                                    ),
+                        IconButton("create", 
+                                   icon_color ="red",
+                                   on_click = editar,
+                                   ),    
+                            ])
                         ),
                 ]
             )
