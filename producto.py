@@ -54,7 +54,7 @@ def main(page: ft.Page):
         page.update()
 
     def editar(e):
-        codpro.read_only = False
+        
         nompro.focus()
 
     
