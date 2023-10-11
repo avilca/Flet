@@ -25,14 +25,6 @@ def main(page: ft.Page):
         ],
     )
 
-    #CREAR LOS CONTROLES PARA EDITAR
-    
-    edit_nompro = TextField(label="NOMBRE PRODUCTO")
-    edit_ddcate = Dropdown(label="CATEGORIA")
-    edit_ddpeso = Dropdown(label="PESO")
-    edit_codpro = TextField(label="CÓDIGO PRODUCTO")
-
-
     #DATATABLE
     tablaproducto = DataTable(
                   #CABECERA DE LAS CALUMNAS  
@@ -54,7 +46,8 @@ def main(page: ft.Page):
         #MENSAJE con Barra inferior
         page.snack_bar = SnackBar(
             Text("SE ELIMINO DATO", size = 30),
-            bgcolor = "red"            
+            bgcolor = "red",
+            duration= 500,            
         )
         page.snack_bar.open = True
         #FIN DEL MENSAJE inferior
@@ -66,13 +59,13 @@ def main(page: ft.Page):
     def guardar(e):
         pass
 
-    # Crear Dialogo
+    # Crear Dialog
     dialog = AlertDialog(
         title=Text("Editar datos"),
         content=Column([
-            edit_nompro,
-            edit_ddcate,
-            edit_ddpeso,
+            nompro,
+            ddcate,
+            ddpeso,
         ]),
         actions=[
             TextButton("Guardar",
@@ -84,10 +77,10 @@ def main(page: ft.Page):
 
     #Funcion EDITAR
     def editar(e):
-        edit_nompro.value = TextField
-        edit_ddcate.value = Dropdown
-        edit_ddpeso.value = Dropdown
-        
+        nompro
+        ddcate
+        ddpeso
+       
 
         page.dialog = dialog
         dialog.open = True
@@ -124,7 +117,8 @@ def main(page: ft.Page):
         #MENSAJE con Barra inferior
         page.snack_bar = SnackBar(
             Text("DATO INGRESADO", size = 30),
-            bgcolor = "green"
+            bgcolor = "green",
+            duration= 500,
         )
         page.snack_bar.open = True
         #FIN DEL MENSAJE
