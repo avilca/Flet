@@ -25,7 +25,15 @@ def main(page: ft.Page):
         ],
     )
 
+    #CREAR LOS CONTROLES PARA EDITAR
+    
+    edit_nompro = TextField(label="NOMBRE PRODUCTO")
+    edit_ddcate = Dropdown(label="CATEGORIA")
+    edit_ddpeso = Dropdown(label="PESO")
+    edit_codpro = TextField(label="CÓDIGO PRODUCTO")
 
+
+    #DATATABLE
     tablaproducto = DataTable(
                   #CABECERA DE LAS CALUMNAS  
                   columns=[
@@ -53,9 +61,38 @@ def main(page: ft.Page):
  
         page.update()
 
+
+    #FUNCION GUARDAR
+    def guardar(e):
+        pass
+
+    # Crear Dialogo
+    dialog = AlertDialog(
+        title=Text("Editar datos"),
+        content=Column([
+            edit_nompro,
+            edit_ddcate,
+            edit_ddpeso,
+        ]),
+        actions=[
+            TextButton("Guardar",
+                       on_click=guardar
+                       )
+        ]
+    )
+
+
+    #Funcion EDITAR
     def editar(e):
+        edit_nompro.value = TextField
+        edit_ddcate.value = Dropdown
+        edit_ddpeso.value = Dropdown
         
-        nompro.focus()
+
+        page.dialog = dialog
+        dialog.open = True
+        page.update()
+
 
     
 
@@ -86,7 +123,7 @@ def main(page: ft.Page):
         )
         #MENSAJE con Barra inferior
         page.snack_bar = SnackBar(
-            Text("DATO INGRESADO CORRECTAMENTE", size = 30),
+            Text("DATO INGRESADO", size = 30),
             bgcolor = "green"
         )
         page.snack_bar.open = True
