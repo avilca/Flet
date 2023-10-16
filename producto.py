@@ -26,7 +26,7 @@ def main(page: ft.Page):
     )
 
     # CREANDO LOS CONTROLES PARA EDITAR DATOS
-    edit_nametxt = TextField(label="NOMBRE PRODUCTO")
+    edit_nomprotxt = TextField(label="NOMBRE PRODUCTO")
 
     edit_ddcate = ft.Dropdown(label="CATEGORIA",
         width=150,
@@ -83,7 +83,7 @@ def main(page: ft.Page):
     dialog = AlertDialog(
         title=Text("Editar datos"),
         content=Column([
-            edit_nametxt,
+            edit_nomprotxt,
             edit_ddcate,
             edit_ddpeso,
             
@@ -99,7 +99,7 @@ def main(page: ft.Page):
       #Funcion EDITAR
     def editar(e):
 
-        edit_nametxt.value = tablaproducto.rows[0].cells[1].content.value
+        edit_nomprotxt.value = tablaproducto.rows[0].cells[1].content.value
         edit_ddcate.value = tablaproducto.rows[0].cells[2].content.value
         edit_ddpeso.value = tablaproducto.rows[0].cells[3].content.value
 
