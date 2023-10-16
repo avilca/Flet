@@ -25,6 +25,10 @@ def main(page: ft.Page):
         ],
     )
 
+    # CREANDO CONTROLES PARA EDITAR DATOS
+    edit_nametxt = TextField(label="NOMBRE PRODUCTO")
+
+
     #DATATABLE
     tablaproducto = DataTable(
                   #CABECERA DE LAS CALUMNAS  
@@ -39,6 +43,7 @@ def main(page: ft.Page):
                   rows=[]          
     )
 
+ 
     #FUNCION ELIMINAR
     def eliminar(e):
         tablaproducto.rows.remove(tablaproducto.rows[0])
@@ -54,40 +59,35 @@ def main(page: ft.Page):
  
         page.update()
 
-
-    #FUNCION GUARDAR
-    def guardar(e):
+    def guardar():
         pass
+
 
     # Crear Dialog
     dialog = AlertDialog(
         title=Text("Editar datos"),
         content=Column([
-            nompro,
-            ddcate,
-            ddpeso,
+            edit_nametxt,
+            
+            
         ]),
         actions=[
             TextButton("Guardar",
                        on_click=guardar
-                       )
+                      )
         ]
     )
 
-
-    #Funcion EDITAR
+      #Funcion EDITAR
     def editar(e):
-        nompro
-        ddcate
-        ddpeso
-       
+
+        edit_nametxt.value = tablaproducto.rows[0].cells[1].content.value
+
 
         page.dialog = dialog
         dialog.open = True
         page.update()
 
-
-    
 
     #FUNCION para AGREGAR     
     def agregar(e):
@@ -107,7 +107,7 @@ def main(page: ft.Page):
                                     ),
                         IconButton("create", 
                                    icon_color ="red",
-                                   on_click = editar,
+                                   on_click = editar
                                    ),    
                             ])
                         ),
