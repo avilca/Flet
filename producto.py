@@ -2,45 +2,57 @@ import flet as ft
 from flet import *
 
 
-def main(page: ft.Page):
+def main(page):
 
-    codpro = TextField(label="CÓDIGO PRODUCTO")
-    nompro = TextField(label="NOMBRE PRODUCTO")
 
-    #combo de categoria
-    ddcate = ft.Dropdown(label="CATEGORIA",
+    #Tamaño de ventana 
+    page.window_width = 700
+    page.window_height = 700
+
+    page.window_resizable = False
+
+    
+    
+
+    #CONTROLES (Controls)
+
+    codpro = TextField(label="CÓDIGO PRODUCTO", width = 200)
+    nompro = TextField(label="NOMBRE PRODUCTO", width = 600)
+
+    #combo de categoria (Category)
+    ddcate = Dropdown(label="CATEGORIA",
         width=150,
         options=[
-            ft.dropdown.Option("dulce"),
-            ft.dropdown.Option("salado"),
+            dropdown.Option("dulce"),
+            dropdown.Option("salado"),
         ],
     )
 
-    #combo de peso
-    ddpeso = ft.Dropdown(label="PESO",
+    #combo de peso (weight)
+    ddpeso = Dropdown(label="PESO",
         width=100,
         options=[
-            ft.dropdown.Option("KG"),
+            dropdown.Option("KG"),
             ft.dropdown.Option("G"),
         ],
     )
 
-    # CREANDO LOS CONTROLES PARA EDITAR DATOS
+    #CONTROLES PARA EDITAR DATOS (Controls for Edit)
     edit_nomprotxt = TextField(label="NOMBRE PRODUCTO")
 
-    edit_ddcate = ft.Dropdown(label="CATEGORIA",
+    edit_ddcate = Dropdown(label="CATEGORIA",
         width=150,
         options=[
-            ft.dropdown.Option("dulce"),
-            ft.dropdown.Option("salado"),
+            dropdown.Option("dulce"),
+            dropdown.Option("salado"),
         ],
     )
 
-    edit_ddpeso = ft.Dropdown(label="PESO",
+    edit_ddpeso = Dropdown(label="PESO",
         width=100,
         options=[
-            ft.dropdown.Option("KG"),
-            ft.dropdown.Option("G"),
+            dropdown.Option("KG"),
+            dropdown.Option("G"),
         ],
     )
 
@@ -60,7 +72,7 @@ def main(page: ft.Page):
     )
 
  
-    #FUNCION ELIMINAR
+    #FUNCION ELIMINAR (Function Delete)
     def eliminar(e):
         tablaproducto.rows.remove(tablaproducto.rows[0])
 
@@ -68,7 +80,7 @@ def main(page: ft.Page):
         page.snack_bar = SnackBar(
             Text("SE ELIMINO DATO", size = 30),
             bgcolor = "red",
-            duration= 500,            
+            duration= 400,            
         )
         page.snack_bar.open = True
         #FIN DEL MENSAJE inferior
@@ -85,10 +97,8 @@ def main(page: ft.Page):
         content=Column([
             edit_nomprotxt,
             edit_ddcate,
-            edit_ddpeso,
-            
-            
-        ]),
+            edit_ddpeso,              
+         ]),
         actions=[
             TextButton("Guardar",
                        on_click=guardar
@@ -96,8 +106,9 @@ def main(page: ft.Page):
         ]
     )
 
-      #Funcion EDITAR
+    #Funcion EDITAR (Function Edit)
     def editar(e):
+  
 
         edit_nomprotxt.value = tablaproducto.rows[0].cells[1].content.value
         edit_ddcate.value = tablaproducto.rows[0].cells[2].content.value
@@ -109,7 +120,7 @@ def main(page: ft.Page):
         page.update()
 
 
-    #FUNCION para AGREGAR     
+    #FUNCION para AGREGAR (Function Add)    
     def agregar(e):
         
         tablaproducto.rows.append(
@@ -126,7 +137,7 @@ def main(page: ft.Page):
                                    on_click = eliminar,
                                     ),
                         IconButton("create", 
-                                   icon_color ="red",
+                                   icon_color ="blue",
                                    on_click = editar
                                    ),    
                             ])
@@ -138,7 +149,7 @@ def main(page: ft.Page):
         page.snack_bar = SnackBar(
             Text("DATO INGRESADO", size = 30),
             bgcolor = "green",
-            duration= 500,
+            duration= 400,
         )
         page.snack_bar.open = True
         #FIN DEL MENSAJE
