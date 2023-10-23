@@ -6,9 +6,6 @@ def main(page):
 
 
     #Tamaño de ventana 
-    page.window_width = 700
-    page.window_height = 700
-
     page.window_resizable = False
 
     
