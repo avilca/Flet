@@ -106,11 +106,20 @@ def main(page):
     #Funcion EDITAR (Function Edit)
     def editar(e):
   
+  
+        e.control.data = "ON"
+        filas = tablaproducto.rows[:]
 
-        edit_nomprotxt.value = tablaproducto.rows[0].cells[1].content.value
-        edit_ddcate.value = tablaproducto.rows[0].cells[2].content.value
-        edit_ddpeso.value = tablaproducto.rows[0].cells[3].content.value
 
+        for valor in filas:
+            if valor.cells[-1].content.controls[1].data == 'ON':
+                fila = filas.index(valor)
+
+        e.control.data = "OFF"  
+        edit_nomprotxt.value = tablaproducto.rows[fila].cells[1].content.value
+        edit_ddcate.value = tablaproducto.rows[fila].cells[2].content.value
+        edit_ddpeso.value = tablaproducto.rows[fila].cells[3].content.value
+       
 
         page.dialog = dialog
         dialog.open = True
