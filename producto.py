@@ -7,9 +7,7 @@ def main(page):
 
     #Tamaño de ventana 
     page.window_resizable = False
-
-    
-    
+        
 
     #CONTROLES (Controls)
 
@@ -77,45 +75,65 @@ def main(page):
         page.snack_bar = SnackBar(
             Text("SE ELIMINO DATO", size = 30),
             bgcolor = "red",
-            duration= 400,            
+            duration= 450,            
         )
         page.snack_bar.open = True
         #FIN DEL MENSAJE inferior
  
         page.update()
 
-    def guardar():
-        pass
+
+    #Funcion GUARDAR (Function Save)
+    def guardar(e):
+
+        e.control.data = "OFF"
+        filas = tablaproducto.rows[:]
+        for valor in filas:
+            if valor.cells[-1].content.controls[1].data == 'OFF':
+                fila = filas.index(valor)
+       
+        tablaproducto.rows[fila].cells[1].content.value = edit_nomprotxt.value
+        tablaproducto.rows[fila].cells[2].content.value = edit_ddcate.value
+        tablaproducto.rows[fila].cells[3].content.value = edit_ddpeso.value
+
+        page.dialog = dialog
+        dialog.open = False
+        page.update()       
 
 
     # Crear Dialog
     dialog = AlertDialog(
-        title=Text("Editar datos"),
+        title=Text("Modificando datos"),
         content=Column([
             edit_nomprotxt,
             edit_ddcate,
             edit_ddpeso,              
          ]),
         actions=[
-            TextButton("Guardar",
-                       on_click=guardar
-                      )
-        ]
+            ElevatedButton("Guardar",
+                       on_click=guardar, 
+                       bgcolor= "green", 
+                       color= "white",
+                      ),
+
+            ElevatedButton("Cancelar", 
+                           bgcolor = "red", 
+                           color = "white"
+                      ),
+        ],
     )
 
     #Funcion EDITAR (Function Edit)
     def editar(e):
-  
-  
+           
         e.control.data = "ON"
         filas = tablaproducto.rows[:]
-
-
         for valor in filas:
             if valor.cells[-1].content.controls[1].data == 'ON':
                 fila = filas.index(valor)
 
-        e.control.data = "OFF"  
+
+        e.control.data = "OFF"
         edit_nomprotxt.value = tablaproducto.rows[fila].cells[1].content.value
         edit_ddcate.value = tablaproducto.rows[fila].cells[2].content.value
         edit_ddpeso.value = tablaproducto.rows[fila].cells[3].content.value
@@ -143,7 +161,7 @@ def main(page):
                                    on_click = eliminar,
                                     ),
                         IconButton("create", 
-                                   icon_color ="blue",
+                                   icon_color ="orange",
                                    on_click = editar
                                    ),    
                             ])
@@ -155,7 +173,7 @@ def main(page):
         page.snack_bar = SnackBar(
             Text("DATO INGRESADO", size = 30),
             bgcolor = "green",
-            duration= 400,
+            duration= 450,
         )
         page.snack_bar.open = True
         #FIN DEL MENSAJE
