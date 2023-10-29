@@ -43,7 +43,7 @@ def main(page):
         dlg_valor2.open = True
         page.update()    
         
-    def valida_campos():
+    def valida_campos(event):
         if valor1.value == "":
             mostrar_valor1(event)
             return 
@@ -57,7 +57,7 @@ def main(page):
     def sumar(e):
                 
         if valor1.value == "" or valor2.value == "":
-            valida_campos()      
+            valida_campos(e)      
         else:
             valor1.error_text= ''
             valor2.error_text= ''
