@@ -161,7 +161,7 @@ def main(page):
                                    on_click = eliminar,
                                     ),
                         IconButton("create", 
-                                   icon_color ="orange",
+                                   icon_color ="blue",
                                    on_click = editar
                                    ),    
                             ])
@@ -183,14 +183,14 @@ def main(page):
         nompro.value = ""
         ddcate.value = ""
         ddpeso.value = ""
-
+        BtnAgregar.focus()
         page.update()
 
        
     #Boton AGREGAR
     BtnAgregar = ElevatedButton(
         text="Agregar", 
-        bgcolor="blue",
+        bgcolor="green",
         color="white",
         on_click=agregar
         )
