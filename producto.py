@@ -67,15 +67,41 @@ def main(page):
     )
 
 
-    '''def lee_entero():
-        while True:
-            entrada = raw_input("Escribe un numero entero: ")
-            try:
-                entrada = int(entrada)
-                return entrada
-            except ValueError:
-                print "La entrada es incorrecta: escribe un numero entero"
-    '''
+    def mostrar_mensaje(e):
+        page.dialog = dialog2
+        dialog2.open = True
+        page.update()
+
+
+    def cerrar_mensaje(e):
+        dialog2.open = False
+        page.update()
+
+    #DIALOG PARA MENSAJE DE CAMPOS VACIOS
+    dialog2 = AlertDialog(
+        title=Text("Algún campo esta vacío", bgcolor="red"),
+        actions=[
+            ElevatedButton("Aceptar",
+                       on_click=cerrar_mensaje, 
+                       bgcolor= "red", 
+                       color= "white",
+                      ),        
+        ],
+    )    
+
+
+
+    #FUNCION PARA VALIDAR CAMPOS VACIOS (FUNCTION Empty Values)
+    def valida_campos(e):
+
+        lista = [codpro, nompro, ddcate, ddpeso]
+
+        if len(lista) == 0:
+            mostrar_mensaje(e)
+        #else:
+        #    agregar 
+
+
  
     #FUNCION ELIMINAR (Function Delete)
     def eliminar(e):
@@ -91,6 +117,7 @@ def main(page):
         #FIN DEL MENSAJE inferior
  
         page.update()
+
 
 
     #Funcion GUARDAR (Function Save)
@@ -111,6 +138,12 @@ def main(page):
         page.update()       
 
 
+    def cerrar_dialog1(e):
+        dialog.open = False
+        page.update()
+    
+
+
     # Crear Dialog
     dialog = AlertDialog(
         title=Text("Modificando datos"),
@@ -128,7 +161,8 @@ def main(page):
 
             ElevatedButton("Cancelar", 
                            bgcolor = "red", 
-                           color = "white"
+                           color = "white",
+                           on_click=cerrar_dialog1
                       ),
         ],
     )
@@ -157,6 +191,8 @@ def main(page):
     #FUNCION para AGREGAR (Function Add)    
     def agregar(e):
         
+        valida_campos(e)
+
         tablaproducto.rows.append(
             DataRow(
                 cells=[
