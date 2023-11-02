@@ -67,19 +67,21 @@ def main(page):
     )
 
 
-    def mostrar_mensaje(e):
-        page.dialog = dialog2
-        dialog2.open = True
-        page.update()
-
 
     def cerrar_mensaje(e):
         dialog2.open = False
         page.update()
 
+
+    def mostrar_mensaje(e):
+        page.dialog = dialog2
+        dialog2.open = True
+        page.update()
+
+    
     #DIALOG PARA MENSAJE DE CAMPOS VACIOS
     dialog2 = AlertDialog(
-        title=Text("Algún campo esta vacío", bgcolor="red"),
+        title=Text("Algún campo esta vacío, \npor favor ingrese los datos", color="red"),
         actions=[
             ElevatedButton("Aceptar",
                        on_click=cerrar_mensaje, 
@@ -90,19 +92,6 @@ def main(page):
     )    
 
 
-
-    #FUNCION PARA VALIDAR CAMPOS VACIOS (FUNCTION Empty Values)
-    def valida_campos(e):
-
-        lista = [codpro, nompro, ddcate, ddpeso]
-
-        if len(lista) == 0:
-            mostrar_mensaje(e)
-        #else:
-        #    agregar 
-
-
- 
     #FUNCION ELIMINAR (Function Delete)
     def eliminar(e):
         tablaproducto.rows.remove(tablaproducto.rows[0])
@@ -191,46 +180,57 @@ def main(page):
     #FUNCION para AGREGAR (Function Add)    
     def agregar(e):
         
-        valida_campos(e)
+        
+        lista = [codpro, nompro, ddcate, ddpeso]
+        
+        check = False
 
-        tablaproducto.rows.append(
-            DataRow(
-                cells=[
-                    DataCell(Text(codpro.value)),
-                    DataCell(Text(nompro.value)),
-                    DataCell(Text(ddcate.value)),
-                    DataCell(Text(ddpeso.value)),
-                    DataCell(
-                        Row([
-                        IconButton("delete", 
-                                   icon_color ="red",
-                                   on_click = eliminar,
-                                    ),
-                        IconButton("create", 
-                                   icon_color ="blue",
-                                   on_click = editar
-                                   ),    
-                            ])
-                        ),
-                ]
-            )
-        )
-        #MENSAJE con Barra inferior
-        page.snack_bar = SnackBar(
-            Text("DATO INGRESADO", size = 30),
-            bgcolor = "green",
-            duration= 450,
-        )
-        page.snack_bar.open = True
-        #FIN DEL MENSAJE
+        for campo in lista:
+            if campo.value == '' or not campo.value:
+                mostrar_mensaje(e)
+                check = True
 
-        #Limpiar los controles
-        codpro.value = ""
-        nompro.value = ""
-        ddcate.value = ""
-        ddpeso.value = ""
-        BtnAgregar.focus()
-        page.update()
+        if check == False:
+
+            # agregar 
+            tablaproducto.rows.append(
+                    DataRow(
+                        cells=[
+                            DataCell(Text(codpro.value)),
+                            DataCell(Text(nompro.value)),
+                            DataCell(Text(ddcate.value)),
+                            DataCell(Text(ddpeso.value)),
+                            DataCell(
+                                Row([
+                                IconButton("delete", 
+                                        icon_color ="red",
+                                        on_click = eliminar,
+                                            ),
+                                IconButton("create", 
+                                        icon_color ="blue",
+                                        on_click = editar
+                                        ),    
+                                    ])
+                                ),
+                        ]
+                    )
+                )
+                #MENSAJE con Barra inferior
+            page.snack_bar = SnackBar(
+                    Text("DATO INGRESADO", size = 30),
+                    bgcolor = "green",
+                    duration= 450,
+                )
+            page.snack_bar.open = True
+                #FIN DEL MENSAJE
+
+                #Limpiar los controles
+            codpro.value = ""
+            nompro.value = ""
+            ddcate.value = ""
+            ddpeso.value = ""
+            BtnAgregar.focus()
+            page.update()
 
        
     #Boton AGREGAR
