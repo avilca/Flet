@@ -81,7 +81,8 @@ def main(page):
     
     #DIALOG PARA MENSAJE DE CAMPOS VACIOS
     dialog2 = AlertDialog(
-        title=Text("Algún campo esta vacío, \npor favor ingrese los datos", color="red"),
+        
+        title=Text("Algún campo esta vacío. \nPOR FAVOR ingrese los datos", color="red"),
         actions=[
             ElevatedButton("Aceptar",
                        on_click=cerrar_mensaje, 
@@ -191,8 +192,6 @@ def main(page):
                 check = True
 
         if check == False:
-
-            # agregar 
             tablaproducto.rows.append(
                     DataRow(
                         cells=[
