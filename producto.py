@@ -9,10 +9,22 @@ def main(page):
     page.window_resizable = False
         
 
+    def solo_texto(e):
+        caract_noper = "1234567890.,;[]<>¨´-+-*/" 
+        output = ""
+        for caract in e.control.value:
+            if caract not in caract_noper:
+                output += caract
+        e.control.value = output
+        page.update()
+
+
+
+
     #CONTROLES (Controls)
 
     codpro = TextField(label="CÓDIGO PRODUCTO", width = 200)
-    nompro = TextField(label="NOMBRE PRODUCTO", width = 600)
+    nompro = TextField(label="NOMBRE PRODUCTO", width = 600, on_change=solo_texto)
 
     #combo de categoria (Category)
     ddcate = Dropdown(label="CATEGORIA",
@@ -66,6 +78,9 @@ def main(page):
                   rows=[]          
     )
 
+
+   
+    
 
 
     def cerrar_mensaje(e):
@@ -181,6 +196,7 @@ def main(page):
     #FUNCION para AGREGAR (Function Add)    
     def agregar(e):
         
+
         
         lista = [codpro, nompro, ddcate, ddpeso]
         
